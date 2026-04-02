@@ -5,7 +5,7 @@ ENV LANG=C.UTF-8 \
 	RUSTUP_HOME=/usr/local/rustup \
 	CARGO_HOME=/usr/local/cargo \
 	PATH=/usr/local/cargo/bin:$PATH \
-	RUST_VERSION=1.91.1
+	RUST_VERSION=1.94.1
 
 RUN dnf install -y epel-release; \
 	dnf config-manager --set-enabled crb; \
