@@ -13,7 +13,7 @@ RUN dnf install -y epel-release; \
 	dnf module -y enable nodejs:24; \
 	dnf module -y install nodejs:24/common; \
 	dnf install -y erlang automake gcc pkgconfig openssl-devel ansible openssh diffutils git git-lfs npm; \
-	curl -fSL -o elixir-src.tar.gz "https://github.com/elixir-lang/elixir/archive/v1.19.1.tar.gz"; \
+	curl -fSL -o elixir-src.tar.gz "https://github.com/elixir-lang/elixir/archive/v1.19.5.tar.gz"; \
 	mkdir -p /usr/local/src/elixir; \
 	tar -xzC /usr/local/src/elixir --strip-components=1 -f elixir-src.tar.gz; \
 	rm elixir-src.tar.gz; \
