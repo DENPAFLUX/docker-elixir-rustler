@@ -12,8 +12,12 @@ RUN dnf install -y epel-release; \
 	dnf install -y https://dl.fedoraproject.org/pub/epel/epel{,-next}-release-latest-9.noarch.rpm; \
 	dnf module -y enable nodejs:24; \
 	dnf module -y install nodejs:24/common; \
-	dnf install -y erlang automake gcc pkgconfig openssl-devel ansible openssh diffutils git git-lfs npm; \
-	curl -fSL -o elixir-src.tar.gz "https://github.com/elixir-lang/elixir/archive/v1.19.5.tar.gz"; \
+	rpm --import 'https://github.com/rabbitmq/signing-keys/releases/download/3.0/cloudsmith.rabbitmq-erlang.E495BB49CC4BBE5B.key'; \
+	printf '[modern-erlang]\nname=modern-erlang-el9\nbaseurl=https://yum1.rabbitmq.com/erlang/el/9/$basearch\nrepo_gpgcheck=1\nenabled=1\ngpgkey=https://github.com/rabbitmq/signing-keys/releases/download/3.0/cloudsmith.rabbitmq-erlang.E495BB49CC4BBE5B.key\ngpgcheck=1\nsslverify=1\nsslcacert=/etc/pki/tls/certs/ca-bundle.crt\nmetadata_expire=300\npkg_gpgcheck=1\nautorefresh=1\ntype=rpm-md\n\n[modern-erlang-noarch]\nname=modern-erlang-el9-noarch\nbaseurl=https://yum1.rabbitmq.com/erlang/el/9/noarch\nrepo_gpgcheck=1\nenabled=1\ngpgkey=https://github.com/rabbitmq/signing-keys/releases/download/3.0/cloudsmith.rabbitmq-erlang.E495BB49CC4BBE5B.key\ngpgcheck=1\nsslverify=1\nsslcacert=/etc/pki/tls/certs/ca-bundle.crt\nmetadata_expire=300\npkg_gpgcheck=1\nautorefresh=1\ntype=rpm-md\n' \
+		> /etc/yum.repos.d/rabbitmq-erlang.repo; \
+	dnf install -y erlang automake gcc gcc-c++ pkgconfig openssl-devel ansible openssh diffutils git git-lfs npm; \
+	ln -sf /usr/bin/gcc /usr/bin/cc; \
+	curl -fSL -o elixir-src.tar.gz "https://github.com/elixir-lang/elixir/archive/v1.20.0.tar.gz"; \
 	mkdir -p /usr/local/src/elixir; \
 	tar -xzC /usr/local/src/elixir --strip-components=1 -f elixir-src.tar.gz; \
 	rm elixir-src.tar.gz; \
