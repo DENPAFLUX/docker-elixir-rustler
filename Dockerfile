@@ -22,8 +22,8 @@ RUN dnf install -y epel-release; \
 	rm elixir-src.tar.gz; \
 	cd /usr/local/src/elixir; \
 	make install clean; \
-	find /usr/local/src/elixir/ -type f -not -regex "/usr/local/src/elixir/lib/[^\/]*/lib.*" -exec rm -rf {} +; \
-	find /usr/local/src/elixir/ -type d -depth -empty -delete; \
+	rm -rf /usr/local/src/elixir/; \
+	cd /; \
 	curl -fSL -o rustup-init "https://static.rust-lang.org/rustup/archive/1.28.2/${RUST_ARCH}/rustup-init"; \
 	chmod +x rustup-init; \
 	./rustup-init -y --no-modify-path --profile minimal --default-toolchain $RUST_VERSION --default-host ${RUST_ARCH}; \
