@@ -36,6 +36,7 @@ RUN dnf install -y epel-release; \
 	rustup target add wasm32-unknown-unknown; \
 	cargo install wasm-pack; \
 	dnf clean all; \
-	rm -rf /var/cache/yum
+	rm -rf /var/cache/yum; \
+	rm -rf $CARGO_HOME/registry $CARGO_HOME/git
 
 CMD ["iex"]
