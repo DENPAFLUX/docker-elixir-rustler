@@ -6,7 +6,7 @@ ENV LANG=C.UTF-8 \
 	CARGO_HOME=/usr/local/cargo \
 	PATH=/usr/local/cargo/bin:$PATH \
 	RUST_VERSION=1.97.1 \
-	OTP_VERSION=28.5.0.1
+	OTP_VERSION=28.5.0.3
 
 RUN dnf install -y epel-release; \
 	dnf config-manager --set-enabled crb; \
@@ -24,7 +24,7 @@ RUN dnf install -y epel-release; \
 	make install clean; \
 	rm -rf /usr/local/src/elixir/; \
 	cd /; \
-	curl -fSL -o rustup-init "https://static.rust-lang.org/rustup/archive/1.28.2/${RUST_ARCH}/rustup-init"; \
+	curl -fSL -o rustup-init "https://static.rust-lang.org/rustup/archive/1.29.0/${RUST_ARCH}/rustup-init"; \
 	chmod +x rustup-init; \
 	./rustup-init -y --no-modify-path --profile minimal --default-toolchain $RUST_VERSION --default-host ${RUST_ARCH}; \
 	rm rustup-init; \
