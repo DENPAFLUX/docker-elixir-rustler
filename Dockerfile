@@ -6,7 +6,7 @@ ENV LANG=C.UTF-8 \
 	CARGO_HOME=/usr/local/cargo \
 	PATH=/usr/local/cargo/bin:$PATH \
 	RUST_VERSION=1.97.1 \
-	OTP_VERSION=28.5.0.3
+	OTP_VERSION=28.5.0.5
 
 RUN dnf install -y epel-release; \
 	dnf config-manager --set-enabled crb; \
@@ -16,7 +16,7 @@ RUN dnf install -y epel-release; \
 	dnf install -y "https://github.com/rabbitmq/erlang-rpm/releases/download/v${OTP_VERSION}/erlang-${OTP_VERSION}-1.el9.x86_64.rpm"; \
 	dnf install -y automake gcc gcc-c++ pkgconfig openssl-devel ansible openssh diffutils git git-lfs npm; \
 	ln -sf /usr/bin/gcc /usr/bin/cc; \
-	curl -fSL -o elixir-src.tar.gz "https://github.com/elixir-lang/elixir/archive/v1.20.2.tar.gz"; \
+	curl -fSL -o elixir-src.tar.gz "https://github.com/elixir-lang/elixir/archive/v1.20.3.tar.gz"; \
 	mkdir -p /usr/local/src/elixir; \
 	tar -xzC /usr/local/src/elixir --strip-components=1 -f elixir-src.tar.gz; \
 	rm elixir-src.tar.gz; \
